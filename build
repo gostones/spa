@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+go fmt ./...
+go vet ./...
+goimports -w .
+
+go test -short -v ./...
+
+# go test -bench=Bench ./internal/sec
+
+go install ./...
+
+echo "Done!"
